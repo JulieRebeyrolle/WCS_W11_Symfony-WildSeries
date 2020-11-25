@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&display=swap');
+
+$primary:#030089;
+$secondary:#B10080;
+
+$theme-colors: (
+        "primary": $primary,
+        "secondary": $secondary,
+);
+
+$font-family-sans-serif:'Raleway', Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+@import "node_modules/bootstrap/scss/bootstrap";
