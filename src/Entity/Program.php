@@ -38,6 +38,11 @@ class Program
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Season::class, inversedBy="program_id")
+     */
+    private $seasons;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Program
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getSeasons(): ?Season
+    {
+        return $this->seasons;
+    }
+
+    public function setSeasons(?Season $seasons): self
+    {
+        $this->seasons = $seasons;
 
         return $this;
     }
