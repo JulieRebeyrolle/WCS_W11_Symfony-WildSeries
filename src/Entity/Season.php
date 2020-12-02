@@ -20,7 +20,7 @@ class Season
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Program::class, mappedBy="seasons")
+     * @ORM\ManyToOne (targetEntity=Program::class, inversedBy="seasons")
      */
     private $program_id;
 
@@ -63,24 +63,9 @@ class Season
         return $this->program_id;
     }
 
-    public function addProgramId(Program $programId): self
+    public function setProgramId(?Program $program_id): self
     {
-        if (!$this->program_id->contains($programId)) {
-            $this->program_id[] = $programId;
-            $programId->setSeasons($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProgramId(Program $programId): self
-    {
-        if ($this->program_id->removeElement($programId)) {
-            // set the owning side to null (unless already changed)
-            if ($programId->getSeasons() === $this) {
-                $programId->setSeasons(null);
-            }
-        }
+        $this->program_id = $program_id;
 
         return $this;
     }
