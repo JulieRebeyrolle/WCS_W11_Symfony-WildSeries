@@ -2,16 +2,21 @@
 
 {% block body %}
     <h1>Toutes les catégories </h1>
+    <a class="my-5" href="{{ path('app_index') }}" >
+        Retour à l'accueil
+    </a>
+
+    <div class="my-5 ">
+        <a href="{{ path("category_new")}}" class="btn btn-primary">Ajouter une catégorie</a>
+    </div>
     {% for category in categories %}
         <div>
-            <h2> {{ category.name }} </h2>
-            <a href="{{ path("category_show", { categoryName: category.name }) }}">Voir les dernières séries</a>
+            <a href="{{ path("category_show", { categoryName: category.name }) }}"><h2> {{ category.name }} </h2></a>
         </div>
     {% else %}
         Aucune catégorie trouvée.
     {% endfor %}
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+
+
 {% endblock %}
