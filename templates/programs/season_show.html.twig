@@ -9,10 +9,17 @@
             <p>{{ season.description }}</p>
 
             <h3>Liste des épisodes :</h3>
+            <div class="mx-5">
                 {% for episode in episodes %}
-                    <h4 class="mx-5">{{ episode.number }} - {{ episode.title }}</h4>
-                    <p class="mx-5">{{ episode.synopsis }}</p>
+                    <h4>{{ episode.number }} - {{ episode.title }}</h4>
+                    <p>{{ episode.synopsis }}
+                    </br>
+                    <a href={{ path('program_episode_show',
+                        { program: program.id, season: season.id, episode: episode.id}) }}>Voir l'épisode</a>
+                    </p>
                 {% endfor %}
+            </div>
+
     <a href="{{ path('program_index') }}">
         Retour à la liste des programmes
     </a>
