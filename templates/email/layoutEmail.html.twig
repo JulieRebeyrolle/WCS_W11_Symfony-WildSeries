@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+{% apply inline_css %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %} {% endblock %}</title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;800&display=swap');
+
+            body {
+                margin: 8px 32px;
+            }
+
+            h1 {
+                text-align: center;
+                padding: 16px 0 32px;
+                font-family: 'Alfa Slab One', serif;
+            }
+
+            p {
+                font-family: 'Roboto';
+                font-size: 16pt;
+            }
+            .button-container {
+                text-align:center
+            }
+
+            .button {
+                font: 16pt 'Raleway';
+                text-decoration: none;
+                background-color: #030089;
+                border-radius: 5px;
+                color: #FFFFFF;
+                padding: 8px 16px;
+            }
+        </style>
+    </head>
+
+    <body>
+    {% block body %}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    </body>
+{% endapply %}
+</html>
