@@ -3,6 +3,9 @@
 {% block title %}{{ program.title }} #{{ season.number }}{% endblock %}
 
 {% block body %}
+<div class="media">
+    <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+    <div class="media-body">
 
             <h1 class="mt-0">{{ program.title }} - Saison {{ season.number }}</h1>
             <h2>Sortie en : {{ season.year }}</h2>
@@ -24,6 +27,8 @@
         Retour à la liste des programmes
     </a>
 
+    </div>
+</div>
 
 
 {% endblock %}
