@@ -1,15 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Ajouter une série</h1>
-    <div class="my-5 ">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type='submit' value='Ajouter la série'>
-        {{ form_end(form) }}
-    </div>
+    <div class="container">
+        <h1 class="my-5">Ajouter une série</h1>
+        <div class="my-5">
+            {{ include('programs/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+        <a href="{{ path('app_index') }}" class="btn btn-secondary my-5">
+            Retour à l'accueil
+        </a>
+    </div>
 {% endblock %}

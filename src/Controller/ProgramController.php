@@ -6,7 +6,6 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Season;
-use App\Entity\User;
 use App\Form\CommentType;
 use App\Form\ProgramType;
 use App\Service\Slugify;
@@ -19,6 +18,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\Program;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/programs", name="program_")
@@ -62,6 +62,7 @@ class ProgramController extends AbstractController
             // Deal with the submitted data
             // Get the Entity Manager
             $program->setSlug($slugify->generate($program->getTitle()));
+            $program->setOwner($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             // Persist Category Object
             $entityManager->persist($program);
@@ -102,6 +103,35 @@ class ProgramController extends AbstractController
         }
 
         return $this->render("programs/show.html.twig", ['program' => $program]);
+    }
+
+    /**
+     * @Route("/{slug}/edit", name="edit", methods={"GET","POST"})
+     * @param Request $request
+     * @param Program $program
+     * @param Slugify $slugify
+     * @return Response
+     */
+    public function edit(Request $request, Program $program, Slugify $slugify): Response
+    {
+        if (! ($this->getUser() == $program->getOwner() || in_array('ROLE_ADMIN', $this->getUser()->getRoles()))) {
+            throw new AccessDeniedException('Only the owner  and the admin can edit the program!');
+        }
+
+        $form = $this->createForm(ProgramType::class, $program);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $program->setSlug($slugify->generate($program->getTitle()));
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('program_index');
+        }
+
+        return $this->render('programs/edit.html.twig', [
+            'program' => $program,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -157,5 +187,36 @@ class ProgramController extends AbstractController
             'episode' => $episode,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{program}/seasons/{season}/episode/{episode}/comment/{comment<^[0-9]+$>}",
+     *     methods={"DELETE"}, name="comment_delete")
+     * @param Request $request
+     * @param Comment $comment
+     * @param Program $program
+     * @param Season $season
+     * @param Episode $episode
+     * @return Response
+     */
+
+    public function deleteComment(Request $request, Comment $comment,  Program $program, Season $season, Episode $episode): Response
+    {
+        if (! ($this->getUser() == $comment->getAuthor() || in_array('ROLE_ADMIN', $this->getUser()->getRoles()))) {
+            throw new AccessDeniedException('Only the owner and the admin can edit the comment!');
+        }
+
+        if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($comment);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('program_episode_show', [
+            'program' => $program->getSlug(),
+            'season' => $season->getId(),
+            'episode' => $episode->getSlug()
+        ]);
+
     }
 }

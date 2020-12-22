@@ -12,3 +12,20 @@ $theme-colors: (
 $font-family-sans-serif:'Raleway', Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+h1 {
+  font-family: 'Alfa Slab One', serif;
+}
+.card-title {
+  font-size: 16pt;
+}
+
+.poster-thumbnail {
+  height: 300px;
+  object-fit: cover;
+}
+
+.synopsis {
+  height: 9em;
+  overflow: hidden;
+}

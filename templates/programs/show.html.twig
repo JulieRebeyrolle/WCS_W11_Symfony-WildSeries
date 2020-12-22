@@ -5,9 +5,16 @@
 {% block body %}
 
     <div class="media">
-        <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <img class="align-self-start mr-3 vh-100" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
-            <h1 class="mt-0">{{ program.title }}</h1>
+            <div class="d-flex align-items-md-center justify-content-between">
+                <h1 class="mt-0 d-inline-block">{{ program.title }}</h1>
+                {% if is_granted("ROLE_ADMIN") or app.user == program.owner %}
+                <a href="{{ path("program_edit", { slug: program.slug}) }}"
+                   class="btn btn-primary mr-3">Modifier</a>
+                {% endif %}
+            </div>
+
             <p>{{ program.summary }}</p>
             <p>Catégorie : {{ program.category.name }}</p>
             <a href="{{ path('program_index') }}">

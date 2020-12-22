@@ -7,6 +7,7 @@ use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Security;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -44,19 +45,25 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
 
         ],
     ];
+
     /**
      * @var Slugify
      */
     private $slug;
 
-    public function __construct(Slugify $slug)
+    /**
+     * @var Security
+     */
+    private $security;
+
+    public function __construct(Slugify $slug, Security $security)
     {
         $this->slug = $slug;
     }
 
     public function getDependencies()
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, UserFixtures::class];
     }
 
     public function load(ObjectManager $manager)
@@ -67,6 +74,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setTitle($title);
             $program->setSummary($data['summary']);
             $program->setPoster($data['poster']);
+            $program->setOwner($this->getReference('user_' . rand(0, 10)));
             $program->setCategory($this->getReference('category_' . rand(0, 4)));
             $program->setSlug($this->slug->generate($title));
             $manager->persist($program);
