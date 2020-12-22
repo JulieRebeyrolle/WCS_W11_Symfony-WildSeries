@@ -16,13 +16,13 @@
             </li>
         </ul>
     </div>
-    <div class="text-light mr-2">
-        {% if app.user %}
-        {{ app.user.email }}
-    </div>
 
+    {% if app.user %}
+        <div class="text-light mr-2">
+            <a href="{{ path('my-profile') }}" class="text-light pr-2">Voir mon compte</a>
+        </div>
         <a href="{{ path('app_logout') }}" class="btn btn-secondary"> Se déconnecter</a>
     {% else %}
-        <a href="{{ path('app_login') }}" class="btn btn-secondary"> Se connecter</a>
+        <a href="{{ path('app_login') }}" class="btn btn-secondary"> Se connecter / S'inscrire</a>
     {% endif %}
 </nav>

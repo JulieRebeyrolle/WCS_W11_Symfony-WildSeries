@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Wild Series | Connexion{% endblock %}
 
 {% block body %}
 <div class="container-md mt-5">
@@ -15,7 +15,7 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <h1 class="m-5 text-center">Connexion</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
     <label for="inputPassword">Password</label>
@@ -36,10 +36,15 @@
         </div>
     #}
     <div class="text-center">
-    <button class="btn btn-lg btn-primary mt-5 " type="submit">
-        Sign in
+    <button class="btn btn-primary mt-5 " type="submit">
+        Se connecter
     </button>
     </div>
 </form>
+    
+    <h2 class="mt-5 pt-5 mb-3 text-center">Pas encore inscrit ?</h2>
+    <div class="text-center">
+        <a href="{{ path('app_register') }}" class="btn btn-secondary">S'inscrire</a>
+    </div>
     </div>
 {% endblock %}
