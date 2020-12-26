@@ -3,11 +3,15 @@
 {% block title %}Edit Episode{% endblock %}
 
 {% block body %}
-    <h1>Edit Episode</h1>
+    <h1 class="text-center mt-5">Modifier {{ episode.seasonId.programId.title}} - Saison {{ episode.seasonId.number }} - Episode {{ episode.number }}</h1>
 
-    {{ include('episode/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="container">
 
-    <a href="{{ path('episode_index') }}">back to list</a>
+        <a href="{{ path('episode_index') }}" class="btn-primary btn my-5">Revenir à la liste </a>
+        {{ include('episode/_form.html.twig', {'button_label': 'Modifier'}) }}
+        <div class="text-right">
+            {{ include('episode/_delete_form.html.twig') }}
+        </div>
+    </div>
 
-    {{ include('episode/_comment_delete_form.html.twig') }}
 {% endblock %}

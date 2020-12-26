@@ -90,6 +90,8 @@ class ProgramController extends AbstractController
 
             $mailer->send($email);
 
+            $this->addFlash('success', 'Votre série est enregistrée');
+
             // Finally redirect to categories list
             return $this->redirectToRoute('program_index');
 
@@ -137,6 +139,8 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $program->setSlug($slugify->generate($program->getTitle()));
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'Votre série a bien été modifiée');
 
             return $this->redirectToRoute('program_index');
         }

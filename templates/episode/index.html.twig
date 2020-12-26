@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode index{% endblock %}
+{% block title %}Wild Series | Tous les épisodes{% endblock %}
 
 {% block body %}
-    <h1>Episode index</h1>
+    <h1 class="text-center mt-5">Tous les épisodes</h1>
+
+    <div class="text-center my-5">
+        <a href="{{ path('episode_new') }}" class="btn btn-primary">Ajouter un nouvel épisode</a>
+    </div>
 
     <table class="table">
         <thead>
@@ -12,7 +16,7 @@
                 <th>Title</th>
                 <th>Number</th>
                 <th>Synopsis</th>
-                <th>actions</th>
+                <th colspan="2" class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -22,10 +26,8 @@
                 <td>{{ episode.title }}</td>
                 <td>{{ episode.number }}</td>
                 <td>{{ episode.synopsis }}</td>
-                <td>
-                    <a href="{{ path('episode_show', {'slug': episode.slug}) }}">show</a>
-                    <a href="{{ path('episode_edit', {'slug': episode.slug}) }}">edit</a>
-                </td>
+                <td><a href="{{ path('episode_show', {'slug': episode.slug}) }}" class="btn-sm btn-primary">Voir</a></td>
+                <td><a href="{{ path('episode_edit', {'slug': episode.slug}) }}" class="btn-sm btn-primary">Modifier</a></td>
             </tr>
         {% else %}
             <tr>
@@ -35,5 +37,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('episode_new') }}">Create new</a>
 {% endblock %}
