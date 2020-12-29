@@ -11,6 +11,7 @@ use App\Form\ProgramType;
 use App\Form\SearchProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -217,7 +218,7 @@ class ProgramController extends AbstractController
      * @return Response
      */
 
-    public function deleteComment(Request $request, Comment $comment,  Program $program, Season $season, Episode $episode): Response
+    public function deleteComment(Request $request, Comment $comment, Program $program, Season $season, Episode $episode): Response
     {
         if (! ($this->getUser() == $comment->getAuthor() || in_array('ROLE_ADMIN', $this->getUser()->getRoles()))) {
             throw new AccessDeniedException('Only the owner and the admin can edit the comment!');
@@ -235,5 +236,26 @@ class ProgramController extends AbstractController
             'episode' => $episode->getSlug()
         ]);
 
+    }
+
+    /**
+     * @Route("/{slug}/watchlist",
+     *     methods={"GET","POST"}, name="watchlist")
+     * @param Program $program
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     */
+    public function addToWatchlist(Program $program, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->getUser()->getWatchlist()->contains($program)) {
+            $this->getUser()->removeWatchlist($program);
+        } else {
+            $this->getUser()->addWatchlist($program);
+        }
+        $entityManager->flush();
+
+        return $this->json([
+            'isInWatchlist' => $this->getUser()->isInWatchlist($program)
+        ]);
     }
 }

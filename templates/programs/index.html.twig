@@ -20,7 +20,13 @@
                     <div class="card my-2 mx-1">
                         <img class="card-img-top poster-thumbnail p-0" src="{{ program.poster }}" alt="{{ program.title }} poster">
                         <div class="card-body">
-                            <h2 class="card-title d-block">{{ program.title }}</h2>
+                            <div class="card-title">
+                                <h2 class="card-title d-inline">{{ program.title }}</h2>
+                                {% if app.user %}
+                                        <i class="{{ app.user.isInWatchlist(program) ? 'fas' : 'far' }} fa-heart fa-xs watchlist"></i>
+                                {% endif %}
+                            </div>
+
                             <p class="card-subtitle font-weight-bold">{{ program.category.name }}</p>
                             <p class="card-text synopsis">{{ program.summary }}</p>
                         </div>

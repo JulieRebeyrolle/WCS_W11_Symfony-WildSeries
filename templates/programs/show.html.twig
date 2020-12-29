@@ -8,7 +8,18 @@
         <img class="align-self-start mr-3 vh-100" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
             <div class="d-flex align-items-md-center justify-content-between">
-                <h1 class="mt-0 d-inline-block">{{ program.title }}</h1>
+                <div>
+                    <h1 class="mt-0 d-inline-block">{{ program.title }}</h1>
+                    {% if app.user %}
+                        <button id="watchlist" >
+                            <i id="watchlistIcon" class="watchlist {{ app.user.isInWatchlist(program) ? 'fas' : 'far' }} fa-heart fa-2x ml-2"
+                               data-href="{{ path("program_watchlist", { slug: program.slug}) }}"
+                            ></i>
+                        </button>
+
+                    {% endif %}
+                </div>
+
                 {% if is_granted("ROLE_ADMIN") or app.user == program.owner %}
                 <a href="{{ path("program_edit", { slug: program.slug}) }}"
                    class="btn btn-primary mr-3">Modifier</a>
@@ -38,5 +49,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('watchlist') }}
+    {{ parent() }}
 {% endblock %}
