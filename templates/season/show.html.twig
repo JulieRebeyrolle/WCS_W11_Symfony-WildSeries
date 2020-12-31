@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Season{% endblock %}
+{% block title %}{{ 'season.season'|trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">{{ season.programId.title}} - Saison {{ season.number }}</h1>
+    <h1 class="text-center mt-5">{{ season.programId.title}} - {{ 'season.season'|trans }} {{ season.number }}</h1>
 
 
 
     <div class="container">
 
         <div class="d-flex justify-content-around my-5">
-            <a href="{{ path('season_edit', {'id': season.id}) }}" class="btn btn-primary">Modifier</a>
+            <a href="{{ path('season_edit', {'id': season.id}) }}" class="btn btn-primary">{{ 'edit.edit'|trans }}</a>
 
             {{ include('season/_delete_form.html.twig') }}
         </div>
@@ -19,25 +19,25 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'col.id'|trans }}</th>
                 <td>{{ season.id }}</td>
             </tr>
             <tr>
-                <th>Number</th>
+                <th>{{ 'col.number'|trans }}</th>
                 <td>{{ season.number }}</td>
             </tr>
             <tr>
-                <th>Year</th>
+                <th>{{ 'col.year'|trans }}</th>
                 <td>{{ season.year }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{ 'col.description'|trans }}</th>
                 <td>{{ season.description }}</td>
             </tr>
             </tbody>
         </table>
 
-        <a href="{{ path('season_index') }}" class="btn-primary btn my-5">Revenir à la liste </a>
+        <a href="{{ path('season_index') }}" class="btn-primary btn my-5">{{ 'nav.season-list'|trans }}</a>
 
     </div>
 

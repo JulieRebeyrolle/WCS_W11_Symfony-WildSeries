@@ -1,13 +1,15 @@
 {% extends "base.html.twig" %}
 
+{% block title %}{{ 'title.all-programs'|trans }}{% endblock %}
+
 {% block body %}
-    <h1 class="text-center mt-5">Toutes les séries</h1>
+    <h1 class="text-center mt-5">{{ 'title.all-programs'|trans }}</h1>
 
     <div class="container w-50 my-5">
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <div class="text-center">
-            <button class="btn btn-primary">Recherche</button>
+            <button class="btn btn-primary">{{ 'search.search'|trans }}</button>
         </div>
         {{ form_end(form) }}
     </div>
@@ -31,18 +33,18 @@
                             <p class="card-text synopsis">{{ program.summary }}</p>
                         </div>
                             <div class="text-center card-footer">
-                                <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
+                                <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">{{ 'button.seeprogram'|trans }}</a>
                             </div>
                     </div>
                 </div>
             {% else %}
-                Aucune série trouvée.
+                {{ 'notfound.program'|trans }}
             {% endfor %}
         </div>
     </div>
 
     <div class="my-5 text-center">
-        <a href="{{ path("program_new")}}" class="btn btn-primary">Ajouter une série</a>
+        <a href="{{ path("program_new")}}" class="btn btn-primary">{{ 'program.add'|trans }}</a>
     </div>
 
 {#    <a href="{{ path('app_index') }}">

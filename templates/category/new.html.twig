@@ -1,16 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Ajouter une catégorie </h1>
+    <h1>{{ 'category.add-category'|trans }}</h1>
         <div>
             {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type='submit' value='Ajouter'>
+            <input type='submit' value='{{ 'button.add'|trans }}'>
             {{ form_end(form) }}
         </div>
 
 
     <a href="{{ path('app_index') }}">
-        Retour à l'accueil
+        {{ 'nav.backhome'|trans }}
     </a>
 {% endblock %}

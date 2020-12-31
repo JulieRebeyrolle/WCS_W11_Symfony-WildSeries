@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Episode{% endblock %}
+{% block title %}{{ 'episode.edit-episode'|trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">Modifier {{ episode.seasonId.programId.title}} - Saison {{ episode.seasonId.number }} - Episode {{ episode.number }}</h1>
+    <h1 class="text-center mt-5">{{ 'edit.edit'|trans }} {{ episode.seasonId.programId.title}} - {{ 'season.season'|trans }} {{ episode.seasonId.number }} - {{ 'episode.episode'|trans }} {{ episode.number }}</h1>
 
     <div class="container">
 
-        <a href="{{ path('episode_index') }}" class="btn-primary btn my-5">Revenir à la liste </a>
+        <a href="{{ path('episode_index') }}" class="btn-primary btn my-5">{{ 'nav.episode-list'|trans }}
+        </a>
         {{ include('episode/_form.html.twig', {'button_label': 'Modifier'}) }}
         <div class="text-right">
             {{ include('episode/_delete_form.html.twig') }}

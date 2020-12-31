@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Série #{{ program.id }}{% endblock %}
+{% block title %}{{ program.title }}{% endblock %}
 
 {% block body %}
 
@@ -22,28 +22,28 @@
 
                 {% if is_granted("ROLE_ADMIN") or app.user == program.owner %}
                 <a href="{{ path("program_edit", { slug: program.slug}) }}"
-                   class="btn btn-primary mr-3">Modifier</a>
+                   class="btn btn-primary mr-3">{{ 'edit.edit'|trans }}</a>
                 {% endif %}
             </div>
 
             <p>{{ program.summary }}</p>
-            <p>Catégorie : {{ program.category.name }}</p>
+            <p> {{ 'category.category'|trans }} : {{ program.category.name }}</p>
             <a href="{{ path('program_index') }}">
-                Retour à la liste des programmes
+                {{ 'nav.program-list'|trans }}
             </a>
 
             {% for season in program.seasons %}
-                <h2 class="mt-5">Saison {{ season.number }} ({{ season.year }})</h2>
+                <h2 class="mt-5">{{ 'season.season'|trans }} {{ season.number }} ({{ season.year }})</h2>
                 <p>{{ season.description }}</p>
-                <a href={{ path('program_season_show', { program: program.slug, season: season.id}) }}>Voir les épisodes</a>
+                <a href={{ path('program_season_show', { program: program.slug, season: season.id}) }}>{{ 'season.see-episodes'|trans }}</a>
             {% endfor %}
             <div class="my-5">
-                <strong>Acteurs :</strong>
+                <strong>{{ 'title.all-actors'|trans }}</strong>
                 <ul>
                     {% for actor in program.actors %}
                         <li><a href="{{ path('actor_show', { id: actor.id} ) }}">{{ actor.name }}</a> </li>
                     {% else %}
-                        <li>Aucun acteur pour cette série</li>
+                        <li>{{ 'notfound.actor-program'|trans }}</li>
                     {% endfor %}
                 </ul>
             </div>

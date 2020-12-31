@@ -7,24 +7,24 @@
     <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
     <div class="media-body">
 
-            <h1 class="mt-0">{{ program.title }} - Saison {{ season.number }}</h1>
-            <h2>Sortie en : {{ season.year }}</h2>
+            <h1 class="mt-0">{{ program.title }} - {{ 'season.season'|trans }} {{ season.number }}</h1>
+            <h2>{{ 'season.release'|trans }} {{ season.year }}</h2>
             <p>{{ season.description }}</p>
 
-            <h3>Liste des épisodes :</h3>
+            <h3>{{ 'season.episodes'|trans }} :</h3>
             <div class="mx-5">
                 {% for episode in season.episodes %}
                     <h4>{{ episode.number }} - {{ episode.title }}</h4>
                     <p>{{ episode.synopsis }}
                     </br>
                     <a href={{ path('program_episode_show',
-                        { program: program.slug, season: season.id, episode: episode.slug}) }}>Voir l'épisode</a>
+                        { program: program.slug, season: season.id, episode: episode.slug}) }}> {{ 'season.see-episode'|trans }}</a>
                     </p>
                 {% endfor %}
             </div>
 
     <a href="{{ path('program_index') }}">
-        Retour à la liste des programmes
+        {{ 'nav.program-list'|trans }}
     </a>
 
     </div>

@@ -11,7 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/season")
+ * @Route({
+ *     "en": "/seasons",
+ *     "fr": "/saisons"
+ * })
  */
 class SeasonController extends AbstractController
 {
@@ -28,7 +31,10 @@ class SeasonController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="season_new", methods={"GET","POST"})
+     * @Route({
+     *     "en": "/new",
+     *     "fr": "/ajouter-une-saison"
+     * }, name="season_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      */
@@ -67,7 +73,10 @@ class SeasonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="season_edit", methods={"GET","POST"})
+     * @Route({
+     *     "en": "/{id}/edit",
+     *     "fr": "/{id}/modifier-une-saison"
+     * }, name="season_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Season $season
      * @return Response

@@ -2,13 +2,13 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="my-5">Ajouter une série</h1>
+        <h1 class="my-5">{{ 'program.add'|trans }}</h1>
         <div class="my-5">
             {{ include('programs/_form.html.twig') }}
         </div>
 
         <a href="{{ path('app_index') }}" class="btn btn-secondary my-5">
-            Retour à l'accueil
+            {{ 'nav.backhome'|trans }}
         </a>
     </div>
 {% endblock %}

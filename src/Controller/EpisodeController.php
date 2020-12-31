@@ -32,7 +32,10 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="episode_new", methods={"GET","POST"})
+     * @Route({
+     *     "en": "/new",
+     *     "fr": "/ajouter-un-episode"
+     * }, name="episode_new", methods={"GET","POST"})
      * @param Request $request
      * @param Slugify $slugify
      * @param MailerInterface $mailer
@@ -83,7 +86,10 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route({
+     *     "en": "/{slug}/edit",
+     *     "fr": "/{slug}/modifier-un-episode"
+     * }, name="episode_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Episode $episode
      * @param Slugify $slugify

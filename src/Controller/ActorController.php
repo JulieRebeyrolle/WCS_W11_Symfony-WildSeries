@@ -13,7 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ActorController
  * @package App\Controller
- * @Route ("/actor", name="actor_")
+ * @Route ({
+ *     "en": "/actors",
+ *     "fr": "/acteurs"
+ * }, name="actor_")
  */
 
 class ActorController extends AbstractController

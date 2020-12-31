@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Wild Series | Toutes les saisons{% endblock %}
+{% block title %}Wild Series | {{ 'title.all-seasons'|trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">Toutes les saisons</h1>
+    <h1 class="text-center mt-5">{{ 'title.all-seasons'|trans }}</h1>
 
     <div class="text-center my-5">
-        <a href="{{ path('season_new') }}" class="btn btn-primary">Ajouter une nouvelle saison</a>
+        <a href="{{ path('season_new') }}" class="btn btn-primary">{{ 'season.new'|trans }}</a>
     </div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>Year</th>
-                <th>Description</th>
-                <th colspan="2" class="text-center">Actions</th>
+                <th>{{ 'col.id'|trans }}</th>
+                <th>{{ 'col.number'|trans }}</th>
+                <th>{{ 'col.year'|trans }}</th>
+                <th>{{ 'col.description'|trans }}</th>
+                <th colspan="2" class="text-center">{{ 'col.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,12 +26,12 @@
                 <td>{{ season.number }}</td>
                 <td>{{ season.year }}</td>
                 <td>{{ season.description }}</td>
-                <td><a href="{{ path('season_show', {'id': season.id}) }}" class="btn-sm btn-primary">Voir</a></td>
-                <td><a href="{{ path('season_edit', {'id': season.id}) }}" class="btn-sm btn-primary">Modifier</a></td>
+                <td><a href="{{ path('season_show', {'id': season.id}) }}" class="btn-sm btn-primary">{{ 'see.see'|trans }}</a></td>
+                <td><a href="{{ path('season_edit', {'id': season.id}) }}" class="btn-sm btn-primary">{{ 'edit.edit'|trans }}</a></td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">{{ 'notfound.seasons'|trans }}</td>
             </tr>
         {% endfor %}
         </tbody>

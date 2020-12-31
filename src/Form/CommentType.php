@@ -8,18 +8,25 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CommentType extends AbstractType
 {
+    public $translator;
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('comment', TextType::class, [
-                'label' => 'Votre commentaire',
+                'label' => $this->translator->trans('comment.label'),
 
             ])
             ->add('rate', ChoiceType::class, [
-                'label' => 'Votre note',
+                'label' => $this->translator->trans('rate.label'),
                 'label_attr' => ['class' => 'radio-custom form-check-inline'],
 
                 'choices' => [

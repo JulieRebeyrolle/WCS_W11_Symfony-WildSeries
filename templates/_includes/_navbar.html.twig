@@ -6,23 +6,40 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path("category_index")}}">Catégories</a>
+                <a class="nav-link" href="{{ path("category_index")}}">{{ 'section.categories'|trans }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('actor_index') }}">Acteurs</a>
+                <a class="nav-link" href="{{ path('actor_index') }}">{{ 'section.actors'|trans }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mes favoris</a>
+                <a class="nav-link" href="#">{{ 'section.favorites'|trans }}</a>
             </li>
         </ul>
     </div>
 
+    <div>
+        {% if app.request.locale == 'fr' %}
+            <a class="dropdown-item text-light" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+        {% else %}
+            <a class="dropdown-item text-light" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+        {% endif %}
+    </div>
+
     {% if app.user %}
         <div class="text-light mr-2">
-            <a href="{{ path('my-profile') }}" class="text-light pr-2">Voir mon compte</a>
+            <a href="{{ path('my-profile') }}" class="text-light pr-2">{{ 'account.myprofile'|trans }}</a>
         </div>
-        <a href="{{ path('app_logout') }}" class="btn btn-secondary"> Se déconnecter</a>
+        <a href="{{ path('app_logout') }}" class="btn btn-secondary"> {{ 'account.logout'|trans }}</a>
     {% else %}
-        <a href="{{ path('app_login') }}" class="btn btn-secondary"> Se connecter / S'inscrire</a>
+        <a href="{{ path('app_login') }}" class="btn btn-secondary"> {{ 'account.sign_in'|trans }} / {{ 'account.register'|trans }}</a>
     {% endif %}
+
+    {#    <li class="nav-item dropdown list-unstyled text-light">
+        <a class="nav-link dropdown-toggle text-light" href="#" id="dropdown-language" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
+        <div class="dropdown-menu dropdown-menu-right text-light" aria-labelledby="dropdown-language">#}
+
+
+    {#        </div>
+    </li>#}
 </nav>

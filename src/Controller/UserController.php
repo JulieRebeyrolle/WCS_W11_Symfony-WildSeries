@@ -12,7 +12,10 @@ class UserController extends \Symfony\Bundle\FrameworkBundle\Controller\Abstract
 {
 
     /**
-     * @Route("/mon-compte", name="my-profile")
+     * @Route({
+     *     "en": "/my-profile",
+     *     "fr": "/mon-compte"
+     * }, name="my-profile")
      * @return Response
      */
     public function showProfile() : Response

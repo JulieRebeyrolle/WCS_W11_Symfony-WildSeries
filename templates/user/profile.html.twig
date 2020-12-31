@@ -1,11 +1,13 @@
 {% extends "base.html.twig" %}
+{% block title %}{{ user.email }}{% endblock %}
+
 
 {% block body %}
-    <h1 class="text-center mt-5">Bienvenue {{ user.email }}</h1>
+    <h1 class="text-center mt-5">{{ 'user.welcome'|trans }} {{ user.email }}</h1>
 
     <div class="container my-5">
 
-        <h2>Vos séries ajoutées</h2>
+        <h2>{{ 'user.programs'|trans }}</h2>
 
         <div class="row">
             {% for program in user.programs %}
@@ -18,25 +20,25 @@
                             <p class="card-text synopsis">{{ program.summary }}</p>
                         </div>
                         <div class="text-center card-footer">
-                            <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
+                            <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">{{ 'button.seeprogram'|trans }}</a>
                         </div>
                     </div>
                 </div>
             {% else %}
-                Pas de séries ajoutées
+                {{ 'notfound.program'|trans }}
             {% endfor %}
         </div>
     </div>
 
     <div class="container my-5">
 
-        <h2>Vos commentaires</h2>
+        <h2>{{ 'user.comments'|trans }}</h2>
 
         {% for comment in user.comments %}
             <div class="card m-3 p-3 bg-light card-body border-primary">
 
                 <h5 class="card-title">{{ comment.episode.title }}</h5>
-                <p class="card-subtitle font-weight-bold">Vous avez mis {{ comment.rate }}
+                <p class="card-subtitle font-weight-bold">{{ 'user.rate'|trans }} {{ comment.rate }}
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                          fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                         <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173
@@ -46,17 +48,10 @@
                     </svg>
                 </p>
 
-                <p class="pl-3 font-italic card-text">Votre commentaire :{{ comment.comment }}</p>
+                <p class="pl-3 font-italic card-text">{{ 'user.comment'|trans }} :{{ comment.comment }}</p>
             </div>
         {% else %}
-            <p>Pas encore de commentaires sur cet épisode</p>
+            <p>{{ 'notfound.comment'|trans }}</p>
         {% endfor %}
-
     </div>
-
-
-
-
-
-
 {% endblock %}

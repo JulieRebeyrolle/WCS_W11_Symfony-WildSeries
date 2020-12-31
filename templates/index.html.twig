@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1 class="text-center mt-5">Bienvenue sur {{ website }}</h1>
+    <h1 class="text-center mt-5"> {{ 'index.welcome'|trans }} {{ website }}</h1>
 
     <div class="container my-5">
         <div class="row">
@@ -15,12 +15,12 @@
                             <p class="card-text synopsis">{{ program.summary }}</p>
                         </div>
                         <div class="text-center card-footer">
-                            <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">Voir la fiche</a>
+                            <a class="btn-primary btn " href="{{ path("program_show", { slug: program.slug }) }}">{{ 'button.seeprogram'|trans }}</a>
                         </div>
                     </div>
                 </div>
             {% else %}
-                Aucune série trouvée.
+                {{ 'notfound.program'|trans }}
             {% endfor %}
         </div>
     </div>

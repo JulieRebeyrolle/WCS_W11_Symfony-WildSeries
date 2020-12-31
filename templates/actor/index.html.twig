@@ -1,9 +1,9 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Tous les acteurs </h1>
+    <h1>{{ 'title.all-actors'|trans }} </h1>
     <a class="my-5" href="{{ path('app_index') }}" >
-        Retour à l'accueil
+        {{ 'nav.backhome'|trans }}
     </a>
 
     {% for actor in actors %}
@@ -11,7 +11,7 @@
             <a href="{{ path('actor_show', { id: actor.id} ) }}"><h2> {{ actor.name }} </h2></a>
         </div>
     {% else %}
-        Aucun acteur trouvé.
+        {{ 'notfound.actor'|trans }}
     {% endfor %}
 
 

@@ -24,7 +24,10 @@ use App\Entity\Program;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/programs", name="program_")
+ * @Route({
+ *     "en": "/programs",
+ *     "fr": "/series"
+ * }, name="program_")
  */
 
 class ProgramController extends AbstractController
@@ -56,7 +59,10 @@ class ProgramController extends AbstractController
 
     /**
      *
-     * @Route("/new", name="new")
+     * @Route({
+     *     "en": "/new",
+     *     "fr": "/ajouter-une-serie"
+     * }, name="new")
      * @param Request $request
      * @param Slugify $slugify
      * @param MailerInterface $mailer
@@ -122,7 +128,10 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/edit", name="edit", methods={"GET","POST"})
+     * @Route({
+     *     "en": "/{slug}/edit",
+     *     "fr": "/{slug}/modifier-une-serie"
+     * }, name="edit", methods={"GET","POST"})
      * @param Request $request
      * @param Program $program
      * @param Slugify $slugify
@@ -153,7 +162,10 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route ("/{program}/season/{season}", name="season_show")
+     * @Route ({
+     *     "en": "/{program}/seasons/{season}",
+     *     "fr": "/{program}/saisons/{season}"
+     * }, name="season_show")
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @param Program $program
      * @param Season $season
@@ -170,7 +182,10 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route ("/{program}/seasons/{season}/episode/{episode}", name="episode_show")
+     * @Route ({
+     *     "en": "/{program}/seasons/{season}/episode/{episode}",
+     *     "fr": "/{program}/saisons/{season}/episode/{episode}"
+     * }, name="episode_show")
      * @ParamConverter("program", class="App\Entity\Program", options={"mapping": {"program": "slug"}})
      * @ParamConverter("episode", class="App\Entity\Episode", options={"mapping": {"episode": "slug"}})
      * @param Program $program
@@ -208,7 +223,10 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{program}/seasons/{season}/episode/{episode}/comment/{comment<^[0-9]+$>}",
+     * @Route({
+     *     "en": "/{program}/seasons/{season}/episode/{episode}/comment/{comment<^[0-9]+$>}",
+     *     "fr": "/{program}/saisons/{season}/episode/{episode}/commentaire/{comment<^[0-9]+$>}"
+     * },
      *     methods={"DELETE"}, name="comment_delete")
      * @param Request $request
      * @param Comment $comment
@@ -239,7 +257,10 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/watchlist",
+     * @Route({
+     *     "en": "/{slug}/watchlist",
+     *     "fr": "/{slug}/mes-favoris"
+     * },
      *     methods={"GET","POST"}, name="watchlist")
      * @param Program $program
      * @param EntityManagerInterface $entityManager

@@ -3,36 +3,36 @@
 {% block title %}Episode{% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">{{ episode.seasonId.programId.title}} - Saison {{ episode.seasonId.number }} - Episode {{ episode.number }}</h1>
+    <h1 class="text-center mt-5">{{ episode.seasonId.programId.title}} - {{ 'season.season'|trans }} {{ episode.seasonId.number }} -  {{ 'episode.episode'|trans }} {{ episode.number }}</h1>
 
     <div class="container">
 
         <div class="d-flex justify-content-around my-5">
-            <a href="{{ path('episode_edit', {'slug': episode.slug}) }}" class="btn btn-primary">Modifier</a>
+            <a href="{{ path('episode_edit', {'slug': episode.slug}) }}" class="btn btn-primary">{{ 'edit.edit'|trans }}</a>
             {{ include('episode/_delete_form.html.twig') }}
         </div>
 
         <table class="table">
             <tbody>
                 <tr>
-                    <th>Id</th>
+                    <th>{{ 'col.id'|trans }}</th>
                     <td>{{ episode.id }}</td>
                 </tr>
                 <tr>
-                    <th>Title</th>
+                    <th>{{ 'col.title'|trans }}</th>
                     <td>{{ episode.title }}</td>
                 </tr>
                 <tr>
-                    <th>Number</th>
+                    <th>{{ 'col.number'|trans }}</th>
                     <td>{{ episode.number }}</td>
                 </tr>
                 <tr>
-                    <th>Synopsis</th>
+                    <th>{{ 'col.synopsis'|trans }}</th>
                     <td>{{ episode.synopsis }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <a href="{{ path('episode_index') }}" class="btn-primary btn my-5">Revenir à la liste </a>
+        <a href="{{ path('episode_index') }}" class="btn-primary btn my-5">{{ 'nav.episode-list'|trans }}</a>
     </div>
 {% endblock %}

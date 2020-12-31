@@ -1,22 +1,22 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Acteur {% endblock %}
+{% block title %}{{ 'actor.actor'|trans }} {% endblock %}
 
 {% block body %}
 
-    <h1> Acteur : {{ actor.name }}</h1>
+    <h1> {{ 'actor.actor'|trans }} : {{ actor.name }}</h1>
     <div>
-        <strong>Séries :</strong>
+        <strong>{{ 'program.programs'|trans }} :</strong>
         <ul>
             {% for program in actor.programs %}
                 <li><a href="{{ path('program_show', { slug: program.slug} ) }}">{{ program.title }}</a> </li>
             {% else %}
-                <li>Aucun acteur pour cette série</li>
+                <li>{{ 'notfound.actor-program'|trans }}</li>
             {% endfor %}
         </ul>
     </div>
 
     <a href="{{ path('program_index') }}">
-        Retour à la liste des séries
+        {{ 'nav.program-list'|trans }}
     </a>
 {% endblock %}

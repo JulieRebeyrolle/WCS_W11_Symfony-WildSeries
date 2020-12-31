@@ -36,7 +36,10 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="new")
+     * @Route({
+     *     "en": "/new",
+     *     "fr": "/ajouter-une-categorie"
+     * }, name="new")
      * @IsGranted("ROLE_ADMIN")
      * @param Request $request
      * @return Response

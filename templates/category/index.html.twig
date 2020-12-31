@@ -1,14 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>Toutes les catégories </h1>
+    <h1>{{ 'title.all-categories'|trans }} </h1>
     <a class="my-5" href="{{ path('app_index') }}" >
-        Retour à l'accueil
+        {{ 'nav.backhome'|trans }}
     </a>
 
     {% if is_granted("ROLE_ADMIN") %}
     <div class="my-5 ">
-        <a href="{{ path("category_new")}}" class="btn btn-primary">Ajouter une catégorie</a>
+        <a href="{{ path("category_new")}}" class="btn btn-primary">{{ 'category.add-category'|trans }}</a>
     </div>
     {% endif %}
 
@@ -17,11 +17,11 @@
             {% for category in categories %}
                 <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="card card-body text-center my-3 border-primary">
-                            <a href="{{ path("category_show", { categoryName: category.name }) }}"><h2> {{ category.name }} </h2></a>
+                            <a href="{{ path("category_show", { categoryName: category.name }) }}"><h2> {{ category.name }}</h2></a>
                         </div>
                 </div>
             {% else %}
-                Aucune catégorie trouvée.
+                {{ 'notfound.category'|trans }}
             {% endfor %}
         </div>
     </div>

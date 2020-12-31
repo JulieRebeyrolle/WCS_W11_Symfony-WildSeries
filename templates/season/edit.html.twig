@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Season{% endblock %}
+{% block title %}{{ 'edit.edit'|trans }} {{ 'season.season'|trans }} {% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-5">Modifier {{ season.programId.title}} - Saison {{ season.number }}</h1>
+    <h1 class="text-center mt-5">{{ 'edit.edit'|trans }} {{ season.programId.title}} - {{ 'season.season'|trans }} {{ season.number }}</h1>
 
     <div class="container">
-        <a href="{{ path('season_index') }}" class="btn-primary btn my-5">Revenir à la liste </a>
+        <a href="{{ path('season_index') }}" class="btn-primary btn my-5">{{ 'nav.season-list'|trans }}</a>
         {{ include('season/_form.html.twig', {'button_label': 'Modifier'}) }}
         <div class="text-right">
             {{ include('season/_delete_form.html.twig') }}
