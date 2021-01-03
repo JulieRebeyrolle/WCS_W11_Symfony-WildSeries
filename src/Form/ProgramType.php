@@ -8,10 +8,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ProgramType extends AbstractType
 {
@@ -30,8 +31,11 @@ class ProgramType extends AbstractType
             ->add('summary', TextareaType::class, [
                 'label' => $this->translator->trans('program.summary.label')
             ])
-            ->add('poster', UrlType::class, [
-                'label' => $this->translator->trans('program.poster.label')
+            ->add('posterFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => false, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+                'label' => $this->translator->trans('program.poster.label'),
             ])
             ->add('category', null, [
                 'label' => $this->translator->trans('program.category.label'),

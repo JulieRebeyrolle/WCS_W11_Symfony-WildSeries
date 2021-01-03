@@ -57,6 +57,7 @@ class User implements UserInterface
     {
         $this->programs = new ArrayCollection();
         $this->watchlist = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
