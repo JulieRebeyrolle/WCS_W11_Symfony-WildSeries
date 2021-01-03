@@ -47,3 +47,9 @@ h1 {
   border: 3px solid $secondary;
 }
 
+.actor-card-img-top {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+

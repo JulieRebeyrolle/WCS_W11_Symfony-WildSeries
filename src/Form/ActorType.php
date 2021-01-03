@@ -22,7 +22,9 @@ class ActorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, [
+                'label' => $this->translator->trans('actor.name.label'),
+            ])
             ->add('biography', TextType::class, [
                 'label' => $this->translator->trans('actor.biography.label'),
             ])
@@ -31,9 +33,7 @@ class ActorType extends AbstractType
                 'allow_delete'  => false, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
                 'label' => $this->translator->trans('actor.picture.label'),
-            ])
-
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

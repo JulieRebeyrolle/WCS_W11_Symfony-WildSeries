@@ -28,9 +28,9 @@
 
     <div>
         {% if app.request.locale == 'fr' %}
-            <a class="dropdown-item text-light" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
+            <a class="text-light m-5" href="{{ path('app_index', {_locale: 'en'}) }}">EN</a>
         {% else %}
-            <a class="dropdown-item text-light" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
+            <a class="text-light m-5" href="{{ path('app_index', {_locale: 'fr'}) }}">FR</a>
         {% endif %}
     </div>
 

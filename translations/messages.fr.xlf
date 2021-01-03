@@ -353,6 +353,30 @@
         <source>season.program_id.label</source>
         <target>Série</target>
       </trans-unit>
+      <trans-unit id="0b8XyPF" resname="actor.name.label">
+        <source>actor.name.label</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="Q29lSea" resname="actor.biography.label">
+        <source>actor.biography.label</source>
+        <target>Biographie</target>
+      </trans-unit>
+      <trans-unit id="7x2ut9a" resname="actor.picture.label">
+        <source>actor.picture.label</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="Dd9Ow5j" resname="actor.new">
+        <source>actor.new</source>
+        <target>Ajouter un acteur</target>
+      </trans-unit>
+      <trans-unit id="W66dxMV" resname="actor.edit-actor">
+        <source>actor.edit-actor</source>
+        <target>Modifier un acteur</target>
+      </trans-unit>
+      <trans-unit id="yF6ioaY" resname="nav.actor-list">
+        <source>nav.actor-list</source>
+        <target>Retour à la liste des acteurs</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
