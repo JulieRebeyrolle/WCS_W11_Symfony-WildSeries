@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'actor.new'|trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ 'actor.new'|trans }}</h1>
+
+    <div class="container">
+        <a href="{{ path('actor_index') }}" class="btn btn-primary my-5">{{ 'nav.actor-list'|trans }}</a>
+        {{ include('actor/_form.html.twig') }}
+    </div>
+
+{% endblock %}

@@ -8,7 +8,7 @@
             {% for program in programs %}
                 <div class="col-lg-4 col-md-6 col-sm-12 ">
                     <div class="card my-2 mx-1">
-                        <img class="card-img-top poster-thumbnail p-0" src="{{ program.poster }}" alt="{{ program.title }} poster">
+                        <img class="card-img-top poster-thumbnail p-0" src="/uploads/{{ program.poster }}" alt="{{ program.title }} poster">
                         <div class="card-body">
                             <h2 class="card-title d-block">{{ program.title }}</h2>
                             <p class="card-subtitle font-weight-bold">{{ program.category.name }}</p>

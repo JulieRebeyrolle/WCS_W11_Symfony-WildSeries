@@ -1,11 +1,11 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}{{ 'actor.actor'|trans }} {% endblock %}
+{% block title %}{{ 'actor.actor'|trans }}{% endblock %}
 
 {% block body %}
+    <div class="container">
+    <h1 class="text-center mt-5"> {{ actor.name }}</h1>
 
-    <h1> {{ 'actor.actor'|trans }} : {{ actor.name }}</h1>
-    <div>
         <strong>{{ 'program.programs'|trans }} :</strong>
         <ul>
             {% for program in actor.programs %}
@@ -14,9 +14,10 @@
                 <li>{{ 'notfound.actor-program'|trans }}</li>
             {% endfor %}
         </ul>
+
+        <a href="{{ path('program_index') }}" class="btn btn-primary my-5">
+            {{ 'nav.program-list'|trans }}
+        </a>
     </div>
 
-    <a href="{{ path('program_index') }}">
-        {{ 'nav.program-list'|trans }}
-    </a>
 {% endblock %}

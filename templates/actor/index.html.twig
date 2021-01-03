@@ -1,19 +1,36 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'title.all-actors'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.all-actors'|trans }} </h1>
-    <a class="my-5" href="{{ path('app_index') }}" >
-        {{ 'nav.backhome'|trans }}
-    </a>
+    <h1 class="text-center mt-5">{{ 'title.all-actors'|trans }}</h1>
 
-    {% for actor in actors %}
-        <div>
-            <a href="{{ path('actor_show', { id: actor.id} ) }}"><h2> {{ actor.name }} </h2></a>
-        </div>
-    {% else %}
-        {{ 'notfound.actor'|trans }}
-    {% endfor %}
+    <div class="text-center my-5">
+        <a href="{{ path('actor_new') }}" class="btn btn-primary">{{ 'actor.new'|trans }}</a>
+    </div>
 
+    <div class="container">
+        <table class="table">
+
+            <tbody>
+            {% for actor in actors %}
+                <tr>
+                    <td>{{ actor.name }}</td>
+                    <td>
+                        <a href="{{ path('actor_show', {'id': actor.id}) }}" class="btn-sm btn-primary">{{ 'see.see'|trans }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('actor_edit', {'id': actor.id}) }}" class="btn-sm btn-primary">{{ 'edit.edit'|trans }} </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun acteur trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 {% endblock %}
