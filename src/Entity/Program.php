@@ -64,9 +64,7 @@ class Program
      *          "image/jpeg",
      *          "image/jpg",
      *          "image/gif",
-     *      }
-     *
-     * )
+     *      })
      */
     private $posterFile;
 

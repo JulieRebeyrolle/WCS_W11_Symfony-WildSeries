@@ -6,7 +6,13 @@
     <div class="container">
     <h1 class="text-center mt-5"> {{ actor.name }}</h1>
 
-        <strong>{{ 'program.programs'|trans }} :</strong>
+        <div class="d-flex justify-content-center m-5">
+            <img class="actor-show-picture" src="/uploads/{{ actor.picture }}" alt="{{ actor.name }} picture">
+        </div>
+
+        <p> {{ actor.biography }}</p>
+
+        <h3 class="mt-4">{{ 'program.programs'|trans }} :</h3>
         <ul>
             {% for program in actor.programs %}
                 <li><a href="{{ path('program_show', { slug: program.slug} ) }}">{{ program.title }}</a> </li>
