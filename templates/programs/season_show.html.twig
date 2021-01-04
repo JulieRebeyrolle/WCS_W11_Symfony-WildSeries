@@ -10,12 +10,12 @@
 
             <h3>Liste des épisodes :</h3>
             <div class="mx-5">
-                {% for episode in episodes %}
+                {% for episode in season.episodes %}
                     <h4>{{ episode.number }} - {{ episode.title }}</h4>
                     <p>{{ episode.synopsis }}
                     </br>
                     <a href={{ path('program_episode_show',
-                        { program: program.id, season: season.id, episode: episode.id}) }}>Voir l'épisode</a>
+                        { program: program.slug, season: season.id, episode: episode.slug}) }}>Voir l'épisode</a>
                     </p>
                 {% endfor %}
             </div>
