@@ -4,15 +4,63 @@
 
 {% block body %}
 
-    <h1 class="mt-0">{{ program.title }} - Saison {{ season.number }}</h1>
+<div class="media">
+    <img class="align-self-start mr-3" src="{{ program.poster }}" alt="{{ program.title }} poster">
+    <div class="media-body">
 
-    <div class="mx-5">
-        <h2>{{ episode.number }} - {{ episode.title }}</h2>
-        <p>{{ episode.synopsis }}</p>
+            <h1 class="mt-0">{{ program.title }} - Saison {{ season.number }}</h1>
+
+            <div class="mx-5">
+                <h2>{{ episode.number }} - {{ episode.title }}</h2>
+                <h4>Résumé de l'épisode</h4>
+                <p>{{ episode.synopsis }}</p>
+            </div>
+
+            <div class="m-5">
+                <a href="{{ path('program_season_show', { program: program.slug, season: season.id}) }}"
+                   class="btn btn-secondary">
+                    Retour à la liste des épisodes
+                </a>
+            </div>
+
+            <div class="mx-5">
+                <h4 class="pb-3">Commentaires</h4>
+                {% for comment in episode.comments %}
+                <div class="ml-5">
+                    <h5>{{ comment.author.username }}</h5>
+                    <p>Cet utilisateur a mis la note de {{ comment.rate }}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                             fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173
+                            6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184
+                            4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8
+                            13.187l-4.389 2.256z"/>
+                        </svg>
+                    </p>
+                    <p class="pl-3 font-italic">{{ comment.comment }}</p>
+                </div>
+                {% else %}
+                    <p>Pas encore de commentaires sur cet épisode</p>
+                {% endfor %}
+
+            </div>
+
+            {% if app.user %}
+                <div class="mx-5">
+                    <h4 class="my-3">Ajouter un commentaire</h4>
+                    <div class="container">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <div class="text-center">
+                            <input type='submit' class="btn btn-primary" value='Ajouter un commentaire'>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            {% endif %}
     </div>
+</div>
 
-    <a href="{{ path('program_season_show', { program: program.slug, season: season.id}) }}">
-        Retour à la liste des épisodes
-    </a>
+
 
 {% endblock %}
